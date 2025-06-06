@@ -16,7 +16,7 @@ df = pd.read_csv("games_march_2025_cleaned.csv")
 
 padrao_excluir = r"(?i)\bhentai\b|[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uac00-\ud7af]"      #isso exclui MUITOS jogos de hentai ou com caracteres asiáticos
 df = df[~df["name"].str.contains(padrao_excluir, na=False)]          
-df = df[df["num_reviews_total"] >= 800]
+df = df[df["num_reviews_total"] >= 1000]
 df.reset_index(drop=True, inplace=True)
 
 
@@ -29,9 +29,9 @@ df["positive_pct"] = (df["positive"] / (df["positive"] + df["negative"]) * 100).
 
 # criei a coluna de porcentagem de avaliações positivas para fazermos um filtro para que apenas alguns jogos sejam recomendados
 
-df_recomendados = df[(df["positive_pct"] >= 73) & (df["num_reviews_total"] > 2500)]
+df_recomendados = df[(df["positive_pct"] >= 73) & (df["num_reviews_total"] > 800) & (df["price"] > 0)]
 
-pd.create_csv = df.to_csv("games_march_2025_cleaned.csv", index=False)
+# pd.create_csv = df.to_csv("games_march_2025_cleaned.csv", index=False)
 
 # print(df_recomendados.shape)
 print(df.shape)
