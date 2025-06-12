@@ -65,6 +65,7 @@ def print_game(game_row):
     st.write(f"**Gêneros:** {game['genres']}")
     st.write(f"**Categorias:** {game['categories']}")
     st.write(f"**Tags:** {game['tags']}")
+    st.write(f"**Similaridade:** {game['similaridade']:.2f}")
     st.write(f"**Sobre o Jogo:** {game['about_the_game']}")
 
 
